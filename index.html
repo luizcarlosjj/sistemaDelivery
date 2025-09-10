@@ -58,9 +58,22 @@
     .section h2{margin:8px 0 12px}
     .grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:16px}
     .card{background:linear-gradient(180deg,#161a22,#121620);border:1px solid #262b3b;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
-    .thumb{position:relative;height:180px;background:#1a1f2c;display:grid;place-items:center}
+    .thumb {
+      position: relative;
+      height: 220px; /* altura fixa padrão para todas */
+      background: #1a1f2c;
+      display: grid;
+      place-items: center;
+      overflow: hidden; /* evita que a imagem saia do espaço */
+      border-radius: 14px;
+    }
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* corta e ajusta sem distorcer */
+      border-radius: 14px;
+    }
     .thumb .tag{position:absolute;left:10px;top:10px;background:#111827;border:1px solid #2d3345;border-radius:999px;padding:4px 8px;font-size:12px}
-    .thumb img{width:100%;height:100%;object-fit:cover}
     .content{padding:14px 14px 10px;display:flex;flex-direction:column;gap:8px}
     .title-sm{font-weight:700}
     .muted{color:var(--muted)}
@@ -254,21 +267,21 @@
   const CATEGORIES = ["Todas","Tradicionais","Especiais","Doces","Bebidas"];
 
   const MENU = [
-    {id:"pz1", nome:"Calabresa", desc:"Mussarela, calabresa fatiada, cebola roxa, orégano.", preco:39.9, cat:"Tradicionais", tags:["🧀 queijo"], img:"https://images.unsplash.com/photo-1548365328-9f547fb0950c?q=80&w=1200&auto=format&fit=crop"},
+    {id:"pz1", nome:"Calabresa", desc:"Mussarela, calabresa fatiada, cebola roxa, orégano.", preco:39.9, cat:"Tradicionais", tags:["🧀 queijo"], img:"https://painacozinha.com/wp-content/uploads/85.Pizza-de-Calabresa-com-Catupiry.webp"},
     {id:"pz2", nome:"Marguerita", desc:"Mussarela, tomate, manjericão fresco, azeite.", preco:41.9, cat:"Tradicionais", tags:["🌿 vegetariana"], img:"https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?q=80&w=1200&auto=format&fit=crop"},
     {id:"pz3", nome:"Frango c/ Catupiry", desc:"Frango desfiado, catupiry, milho, orégano.", preco:44.9, cat:"Tradicionais", tags:["cremosa"], img:"https://images.unsplash.com/photo-1601924994987-69e26d50dc26?q=80&w=1200&auto=format&fit=crop"},
     {id:"pz4", nome:"Portuguesa", desc:"Mussarela, presunto, ovo, cebola, azeitona, pimentão.", preco:46.9, cat:"Tradicionais", tags:["completa"], img:"https://images.unsplash.com/photo-1528137871618-79d2761e3fd5?q=80&w=1200&auto=format&fit=crop"},
 
     {id:"pz5", nome:"Pepperoni", desc:"Mussarela, pepperoni fatiado, toque de pimenta.", preco:49.9, cat:"Especiais", tags:["🌶️ picante"], img:"https://images.unsplash.com/photo-1594007654729-407eedc4be65?q=80&w=1200&auto=format&fit=crop"},
-    {id:"pz6", nome:"Quatro Queijos", desc:"Mussarela, gorgonzola, parmesão, provolone.", preco:52.9, cat:"Especiais", tags:["🧀 muito queijo"], img:"https://images.unsplash.com/photo-1541745537413-b804b0df65d5?q=80&w=1200&auto=format&fit=crop"},
+    {id:"pz6", nome:"Quatro Queijos", desc:"Mussarela, gorgonzola, parmesão, provolone.", preco:52.9, cat:"Especiais", tags:["🧀 muito queijo"], img:"https://redefoodservice.com.br/wp-content/uploads/2023/07/Pizza-Quatro-Queijos.jpg"},
     {id:"pz7", nome:"Caprese", desc:"Mussarela, tomate cereja, pesto, manjericão.", preco:51.5, cat:"Especiais", tags:["🌿 fresca"], img:"https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop"},
     {id:"pz8", nome:"Parma Premium", desc:"Mussarela, presunto de parma, rúcula e lascas de parmesão.", preco:56.9, cat:"Especiais", tags:["premium"], img:"https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1200&auto=format&fit=crop"},
 
-    {id:"pz9", nome:"Chocolate c/ Morango", desc:"Creme de avelã, morangos frescos.", preco:42.9, cat:"Doces", tags:["🍫 doce"], img:"https://images.unsplash.com/photo-1546549039-49efc1fcd362?q=80&w=1200&auto=format&fit=crop"},
-    {id:"pz10", nome:"Banana c/ Canela", desc:"Banana, açúcar e canela, leite condensado.", preco:39.9, cat:"Doces", tags:["clássica"], img:"https://images.unsplash.com/photo-1542326237-94b1c5a538d6?q=80&w=1200&auto=format&fit=crop"},
+    {id:"pz9", nome:"Chocolate c/ Morango", desc:"Creme de avelã, morangos frescos.", preco:42.9, cat:"Doces", tags:["🍫 doce"], img:"https://i.pinimg.com/564x/c0/7b/80/c07b807225197db7eed29e49ffb980cc.jpg"},
+    {id:"pz10", nome:"Banana c/ Canela", desc:"Banana, açúcar e canela, leite condensado.", preco:39.9, cat:"Doces", tags:["clássica"], img:"https://s2-receitas.glbimg.com/gwhIG-mUpHKhYSg8Zl21Zj_OXjA=/0x0:1280x800/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_1f540e0b94d8437dbbc39d567a1dee68/internal_photos/bs/2022/M/q/GHOy3ZT9GjPxMJH7FYmw/pizza-doce-banana-receita.jpg"},
 
     {id:"bd1", nome:"Coca-Cola 1,5L", desc:"Garrafa 1,5L bem gelada.", preco:12.9, cat:"Bebidas", tags:["gelada"], img:"https://images.unsplash.com/photo-1629203851122-3726ecdf080e?q=80&w=1200&auto=format&fit=crop"},
-    {id:"bd2", nome:"Suco Laranja", desc:"Suco natural 300ml.", preco:8.9, cat:"Bebidas", tags:["natural"], img:"https://images.unsplash.com/photo-1542444459-db63c9b7d1c9?q=80&w=1200&auto=format&fit=crop"},
+    {id:"bd2", nome:"Suco Laranja", desc:"Suco natural 300ml.", preco:8.9, cat:"Bebidas", tags:["natural"], img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGW-1pEBjyNb9jIBPbZe4ANxRWCIGUCbjkBA&s"},
   ];
 
   // =========================
