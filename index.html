@@ -51,7 +51,13 @@
     .search input{all:unset;flex:1;padding:6px;font-size:15px}
     .chips{display:flex;gap:8px;flex-wrap:wrap}
     .chip{background:#1c2130;border:1px solid #2b3246;padding:8px 12px;border-radius:999px;cursor:pointer}
-    .chip.active{background:linear-gradient(135deg,#26304a,#20273b);border-color:#3a4461}
+    .chip.active{
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      border-color: var(--brand-2);
+      color: #fff;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(225, 29, 72, 0.35);
+    }
 
     /* Menu grid */
     .section{padding:24px 0}
@@ -118,7 +124,7 @@
     }
     @media (max-width: 640px) {
       .container {
-        padding: 0 30px; /* mais espaço nas laterais no mobile */
+        padding: 0 50px; /* mais espaço nas laterais no mobile */
       }
       .grid {
         gap: 20px; /* aumenta o espaçamento entre cards */
@@ -280,10 +286,10 @@
   const MENU = [
     {id:"pz1", nome:"Calabresa", desc:"Mussarela, calabresa fatiada, cebola roxa, orégano.", preco:39.9, cat:"Tradicionais", tags:["🧀 queijo"], img:"https://painacozinha.com/wp-content/uploads/85.Pizza-de-Calabresa-com-Catupiry.webp"},
     {id:"pz2", nome:"Marguerita", desc:"Mussarela, tomate, manjericão fresco, azeite.", preco:41.9, cat:"Tradicionais", tags:["🌿 vegetariana"], img:"https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?q=80&w=1200&auto=format&fit=crop"},
-    {id:"pz3", nome:"Frango c/ Catupiry", desc:"Frango desfiado, catupiry, milho, orégano.", preco:44.9, cat:"Tradicionais", tags:["cremosa"], img:"https://images.unsplash.com/photo-1601924994987-69e26d50dc26?q=80&w=1200&auto=format&fit=crop"},
+    {id:"pz3", nome:"Frango c/ Catupiry", desc:"Frango desfiado, catupiry, milho, orégano.", preco:44.9, cat:"Tradicionais", tags:["cremosa"], img:"https://www.receitasnestle.com.br/sites/default/files/srh_recipes/86f7100c92218a97fac8e3bbd18ed787.jpg"},
     {id:"pz4", nome:"Portuguesa", desc:"Mussarela, presunto, ovo, cebola, azeitona, pimentão.", preco:46.9, cat:"Tradicionais", tags:["completa"], img:"https://images.unsplash.com/photo-1528137871618-79d2761e3fd5?q=80&w=1200&auto=format&fit=crop"},
 
-    {id:"pz5", nome:"Pepperoni", desc:"Mussarela, pepperoni fatiado, toque de pimenta.", preco:49.9, cat:"Especiais", tags:["🌶️ picante"], img:"https://images.unsplash.com/photo-1594007654729-407eedc4be65?q=80&w=1200&auto=format&fit=crop"},
+    {id:"pz5", nome:"Pepperoni", desc:"Mussarela, pepperoni fatiado, toque de pimenta.", preco:49.9, cat:"Especiais", tags:["🌶️ picante"], img:"https://www.minhareceita.com.br/app/uploads/2022/12/pizza-de-pepperoni-caseira-portal-minha-receita.jpg"},
     {id:"pz6", nome:"Quatro Queijos", desc:"Mussarela, gorgonzola, parmesão, provolone.", preco:52.9, cat:"Especiais", tags:["🧀 muito queijo"], img:"https://redefoodservice.com.br/wp-content/uploads/2023/07/Pizza-Quatro-Queijos.jpg"},
     {id:"pz7", nome:"Caprese", desc:"Mussarela, tomate cereja, pesto, manjericão.", preco:51.5, cat:"Especiais", tags:["🌿 fresca"], img:"https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop"},
     {id:"pz8", nome:"Parma Premium", desc:"Mussarela, presunto de parma, rúcula e lascas de parmesão.", preco:56.9, cat:"Especiais", tags:["premium"], img:"https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1200&auto=format&fit=crop"},
@@ -322,7 +328,11 @@
     CATEGORIES.forEach(cat=>{
       const b = document.createElement('button');
       b.className = 'chip' + (state.filtroCat===cat?' active':'');
-      b.textContent = cat; b.onclick=()=>{state.filtroCat=cat; renderMenu();};
+      b.textContent = cat; 
+      b.onclick = () => {
+        state.filtroCat=cat;
+        renderChips(); 
+        renderMenu();};
       chipList.appendChild(b);
     });
   }
